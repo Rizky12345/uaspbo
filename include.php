@@ -30,12 +30,6 @@ class form extends DB
 	public function post(){
 		$this->query = "INSERT INTO hotel (name, tanggal, type_id, day) VALUES ('$this->name', '$this->tanggal', '$this->type', '$this->days')";
 		$this->state = mysqli_query($this->conn, $this->query);
-		if ($this->state == TRUE) {
-			$alert = "berhasil";
-			echo "berhasil";
-		}else{
-			echo "gagal";
-		}
 	}
 	public function select_type(){
 		$result = mysqli_query($this->conn, "SELECT * FROM type");
@@ -51,11 +45,6 @@ class form extends DB
 	}
 	public function update($where){
 		$result = mysqli_query($this->conn, "UPDATE type SET harga= $this->harga WHERE id = $where");
-		if ($result == TRUE) {
-			echo "berhasil";
-		}else{
-			echo "gagal";
-		}
 	}
 }
 class views extends DB{
@@ -72,6 +61,11 @@ class views extends DB{
 		}
 
 		return $alldata;
+	}
+
+	public function number($angka){
+		$number = "Rp ".number_format($angka,2,',','.');
+		return $number;
 	}
 }
 
